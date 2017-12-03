@@ -11,7 +11,6 @@ import UIKit
 extension UIImageView {
     
     public func downloadImageAsync(url: URL) {
-        
         URLSession.shared.dataTask(with: url, completionHandler: { [weak self]
             (data, response, error) in
             guard error == nil else {
