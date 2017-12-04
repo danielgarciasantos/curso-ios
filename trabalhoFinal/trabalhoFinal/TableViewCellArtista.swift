@@ -17,7 +17,9 @@ class TableViewCellArtista: UITableViewCell {
     
     override func awakeFromNib() {
         img?.clipsToBounds = true
-        img!.layer.cornerRadius = 50
+        img!.layer.cornerRadius = 20
+        img.layer.borderColor = UIColor.brown.cgColor
+        img?.layer.borderWidth = 1.0
         img?.contentMode = .scaleAspectFit
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(TableViewCellArtista.tapFunction))

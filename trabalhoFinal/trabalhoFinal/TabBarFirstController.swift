@@ -101,6 +101,4 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.resignFirstResponder()
     }
 
-    
-
 }
