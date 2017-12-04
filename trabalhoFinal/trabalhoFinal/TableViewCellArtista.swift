@@ -20,6 +20,7 @@ class TableViewCellArtista: UITableViewCell {
         img!.layer.cornerRadius = 20
         img.layer.borderColor = UIColor.brown.cgColor
         img?.layer.borderWidth = 1.0
+ 
         img?.contentMode = .scaleAspectFit
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(TableViewCellArtista.tapFunction))
@@ -34,10 +35,10 @@ class TableViewCellArtista: UITableViewCell {
         UIApplication.shared.open(URL(string: subscription.text!)!, options: [:], completionHandler: nil)
         print(subscription.text!)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
-
+    
 }

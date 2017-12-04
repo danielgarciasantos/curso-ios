@@ -30,10 +30,13 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
     
     lazy var repos = [Repos]()
     lazy var originalRepos = [Repos]()
+  
     
+    @IBOutlet weak var sliderValue: UISlider!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+
         if users.count > lastIndex {
             for i in lastIndex..<users.count {
                 let urlString = "https://api.github.com/users/\(users[i].login)/repos"
@@ -77,7 +80,9 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
         let content = repos[indexPath.row]
     
         custom.title.text = content.name
+        custom.title.font = UIFont(name: custom.title.font.fontName, size: CGFloat(sliderValue.value))
         custom.subscription.text = content.html_url
+        custom.subscription.font = UIFont(name: custom.subscription.font.fontName, size: CGFloat(sliderValue.value))
         custom.img.downloadImageAsync(url: URL(string: content.owner.avatar_url)!)
         
         return cell
@@ -101,4 +106,9 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.resignFirstResponder()
     }
 
+    @IBAction func sliderChangeValue(_ sender: Any) {
+        let slider = sender as! UISlider
+        print(slider.value)
+        tableView.reloadData()
+    }
 }
