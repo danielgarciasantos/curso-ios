@@ -35,6 +35,8 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var sliderValue: UISlider!
     @IBOutlet weak var tableView: UITableView!
     
+    var fonteSize : Float = 12
+    
     override func viewWillAppear(_ animated: Bool) {
 
         if users.count > lastIndex {
@@ -66,6 +68,11 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let prefFontSize = UserDefaults.standard.float(forKey: "sizeFonte")
+        if prefFontSize != 0 {
+            fonteSize = prefFontSize
+        }
+        sliderValue.value = fonteSize
     }
     
     
@@ -80,9 +87,9 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
         let content = repos[indexPath.row]
     
         custom.title.text = content.name
-        custom.title.font = UIFont(name: custom.title.font.fontName, size: CGFloat(sliderValue.value))
+        custom.title.font = UIFont(name: custom.title.font.fontName, size: CGFloat(fonteSize))
         custom.subscription.text = content.html_url
-        custom.subscription.font = UIFont(name: custom.subscription.font.fontName, size: CGFloat(sliderValue.value))
+        custom.subscription.font = UIFont(name: custom.subscription.font.fontName, size: CGFloat(fonteSize))
         custom.img.downloadImageAsync(url: URL(string: content.owner.avatar_url)!)
         
         return cell
@@ -107,8 +114,11 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     @IBAction func sliderChangeValue(_ sender: Any) {
-        let slider = sender as! UISlider
-        print(slider.value)
+        fonteSize = (sender as! UISlider).value
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(fonteSize, forKey: "sizeFonte")
+        userDefaults.synchronize()
         tableView.reloadData()
     }
 }
