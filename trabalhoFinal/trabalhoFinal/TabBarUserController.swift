@@ -41,7 +41,6 @@ class TabBarUserController: UITableViewController {
                 return
             }
             self.adicionarUser(nameUser: text!)
-           
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
@@ -73,12 +72,13 @@ class TabBarUserController: UITableViewController {
     
     func adicionarUser(nameUser name: String) {
         
-        
         let urlString = "https://api.github.com/users/\(name)"
         guard let url = URL(string: urlString) else { return }
-        
+        self.showLoanding()
         URLSession.shared.dataTask(with: url) {
             [weak self]  (data, response, error) in
+            self?.hideLoading()
+            
             if error != nil {
                 print(error!.localizedDescription)
             }
@@ -101,7 +101,6 @@ class TabBarUserController: UITableViewController {
                 print(jsonError)
             }
             }.resume()
-        
     }
 
 

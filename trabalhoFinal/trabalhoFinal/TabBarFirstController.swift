@@ -40,12 +40,14 @@ class TabBarFirstController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
 
         if users.count > lastIndex {
+            self.showLoanding()
             for i in lastIndex..<users.count {
                 let urlString = "https://api.github.com/users/\(users[i].login)/repos"
                 guard let url = URL(string: urlString) else { return }
                 
                 URLSession.shared.dataTask(with: url) {
                     [weak self]  (data, response, error) in
+                    self?.hideLoading()
                     if error != nil {
                         print(error!.localizedDescription)
                     }

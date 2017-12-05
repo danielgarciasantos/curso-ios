@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MBProgressHUD
 
 
 struct Repos: Codable {
@@ -29,4 +30,21 @@ struct User: Codable {
 
 var users : [User] = []
 var lastIndex: Int = 0
+
+extension UIViewController{
+    
+    func showLoanding() {
+        let progressView = MBProgressHUD.showAdded(to: self.view, animated: true)
+        progressView.label.text = "Loading..."
+        progressView.mode = .indeterminate
+    }
+    
+    func hideLoading() {
+        OperationQueue.main.addOperation {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+
+    
+}
 
