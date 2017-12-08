@@ -36,5 +36,12 @@ class AppService: Service<Route> {
                   onError: onError, always: always)
     }
     
+    func editarTask(task: Result, Success: @escaping (Response<Result>?) -> Void,
+                    onError: @escaping (RestError?) -> Void,
+                    always: @escaping () -> Void) {
+        try! call(.editarTask(task: task), type: Result.self, onSuccess: Success,
+                  onError: onError, always: always)
+    }
+    
 }
 

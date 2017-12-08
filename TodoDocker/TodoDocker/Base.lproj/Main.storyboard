@@ -86,7 +86,7 @@
                         <outlet property="ok" destination="moF-oK-ZNb" id="Jqu-LX-YBD"/>
                         <outlet property="senha" destination="UgT-S7-zNX" id="f4w-7j-VG8"/>
                         <outlet property="view" destination="33j-HP-Huq" id="4oi-o0-uLq"/>
-                        <segue destination="IAQ-iR-vAi" kind="show" identifier="loginSucess" id="nLa-p2-MdS"/>
+                        <segue destination="IAQ-iR-vAi" kind="show" identifier="loginSucess" id="pSk-cN-aDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rg-Oe-V7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,14 +180,22 @@
                             <barButtonItem style="plain" systemItem="add" id="7hX-o0-anC">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="OAg-ot-WCc" kind="show" id="lzG-rf-FdA"/>
+                                    <segue destination="OAg-ot-WCc" kind="show" identifier="newTask" id="lzG-rf-FdA"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="search" id="sVm-D1-mif">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="btnSearch:" destination="sOe-S6-OSQ" id="lmz-Kh-rfa"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="botaoSearch" destination="sVm-D1-mif" id="8Q2-jI-3D8"/>
+                        <outlet property="btnAddTask" destination="7hX-o0-anC" id="OGk-ar-P7O"/>
+                        <segue destination="OAg-ot-WCc" kind="show" identifier="editTask" id="RgI-tY-GnX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSn-ub-url" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,7 +212,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titulo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IKu-Zv-unR">
                                 <rect key="frame" x="22" y="22" width="331" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Ay0-K5-1Vl"/>
+                                    <constraint firstAttribute="height" constant="44" id="BzV-IA-fvh"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
@@ -216,17 +224,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q91-yp-cYT">
-                                <rect key="frame" x="22" y="105.5" width="331" height="144"/>
-                                <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="144" id="KvS-wd-V8B"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completo?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4b-sq-XzW">
                                 <rect key="frame" x="22" y="261.5" width="69.5" height="19.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
@@ -237,8 +234,11 @@
                                 <rect key="frame" x="22" y="293" width="51" height="31"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vot-OW-mep">
-                                <rect key="frame" x="22" y="332" width="331" height="32"/>
+                                <rect key="frame" x="22" y="332" width="331" height="44"/>
                                 <color key="backgroundColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5Tf-op-iaq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="ESCOLHER DATA EXPERIAÇAO">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -247,9 +247,21 @@
                                     <action selector="btnDataExpiracao:" destination="OAg-ot-WCc" eventType="touchUpInside" id="UUZ-b0-3Y1"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LQv-ep-sL5">
+                                <rect key="frame" x="22" y="105" width="331" height="144"/>
+                                <color key="backgroundColor" red="0.70131057500839233" green="0.81682509183883667" blue="0.94119518995285034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="144" id="AKQ-Cp-ODJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1I-0b-DLF">
-                                <rect key="frame" x="22" y="372" width="331" height="32"/>
+                                <rect key="frame" x="22" y="384" width="331" height="44"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="0cV-8S-CmW"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="SALVAR">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -261,31 +273,33 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eG8-lb-iFm" firstAttribute="top" secondItem="F4b-sq-XzW" secondAttribute="bottom" constant="12" id="5yP-7n-qTR"/>
-                            <constraint firstItem="v1I-0b-DLF" firstAttribute="top" secondItem="Vot-OW-mep" secondAttribute="bottom" constant="8" id="CiL-Ah-0pe"/>
-                            <constraint firstItem="Q91-yp-cYT" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="ENH-Nf-5Xz"/>
-                            <constraint firstItem="nPg-fW-ReV" firstAttribute="top" secondItem="IKu-Zv-unR" secondAttribute="bottom" constant="12" id="GSZ-Vh-o4h"/>
-                            <constraint firstItem="F4b-sq-XzW" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="JFl-2A-1x6"/>
-                            <constraint firstItem="nPg-fW-ReV" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="Jk9-Q1-VB2"/>
-                            <constraint firstItem="Vot-OW-mep" firstAttribute="top" secondItem="eG8-lb-iFm" secondAttribute="bottom" constant="8" id="KAo-dB-0H9"/>
-                            <constraint firstItem="F4b-sq-XzW" firstAttribute="top" secondItem="Q91-yp-cYT" secondAttribute="bottom" constant="12" id="LDj-Ni-4pi"/>
-                            <constraint firstItem="IKu-Zv-unR" firstAttribute="top" secondItem="Idv-tK-lx8" secondAttribute="top" constant="22" id="VAN-7S-bFB"/>
-                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="v1I-0b-DLF" secondAttribute="trailing" constant="22" id="abz-Cc-3gR"/>
-                            <constraint firstItem="IKu-Zv-unR" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="dZa-4m-zUl"/>
-                            <constraint firstItem="Vot-OW-mep" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="fIp-GZ-sKU"/>
-                            <constraint firstItem="Q91-yp-cYT" firstAttribute="top" secondItem="nPg-fW-ReV" secondAttribute="bottom" constant="8" id="fgH-96-D45"/>
-                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="Vot-OW-mep" secondAttribute="trailing" constant="22" id="iHK-uh-2zK"/>
-                            <constraint firstItem="eG8-lb-iFm" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="nND-YR-Cjp"/>
-                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="IKu-Zv-unR" secondAttribute="trailing" constant="22" id="oxB-QH-CWZ"/>
-                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="Q91-yp-cYT" secondAttribute="trailing" constant="22" id="r9u-vP-R4I"/>
-                            <constraint firstItem="v1I-0b-DLF" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="zSM-wK-JCk"/>
+                            <constraint firstItem="IKu-Zv-unR" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="79l-6C-VdA"/>
+                            <constraint firstItem="Vot-OW-mep" firstAttribute="top" secondItem="eG8-lb-iFm" secondAttribute="bottom" constant="8" id="BDO-wB-ESH"/>
+                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="v1I-0b-DLF" secondAttribute="trailing" constant="22" id="EYj-9z-1RY"/>
+                            <constraint firstItem="eG8-lb-iFm" firstAttribute="top" secondItem="F4b-sq-XzW" secondAttribute="bottom" constant="12" id="FED-jH-BoY"/>
+                            <constraint firstItem="Vot-OW-mep" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="GZK-Zx-yfb"/>
+                            <constraint firstItem="v1I-0b-DLF" firstAttribute="top" secondItem="Vot-OW-mep" secondAttribute="bottom" constant="8" id="KaG-jr-Jd1"/>
+                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="LQv-ep-sL5" secondAttribute="trailing" constant="22" id="Lco-5K-xSH"/>
+                            <constraint firstItem="Vot-OW-mep" firstAttribute="top" secondItem="eG8-lb-iFm" secondAttribute="bottom" constant="8" id="Pyv-aU-Rnr"/>
+                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="IKu-Zv-unR" secondAttribute="trailing" constant="22" id="TwE-OO-oVO"/>
+                            <constraint firstItem="nPg-fW-ReV" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="XCu-UX-1BW"/>
+                            <constraint firstItem="LQv-ep-sL5" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="XYT-M5-G7N"/>
+                            <constraint firstItem="eG8-lb-iFm" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="Zgw-ly-Kse"/>
+                            <constraint firstItem="Vot-OW-mep" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="aEs-ND-nbC"/>
+                            <constraint firstItem="LQv-ep-sL5" firstAttribute="top" secondItem="nPg-fW-ReV" secondAttribute="bottom" constant="8" id="cw8-fc-hGY"/>
+                            <constraint firstItem="v1I-0b-DLF" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="iZV-hd-JHS"/>
+                            <constraint firstItem="nPg-fW-ReV" firstAttribute="top" secondItem="IKu-Zv-unR" secondAttribute="bottom" constant="12" id="lxd-6J-xVA"/>
+                            <constraint firstItem="Idv-tK-lx8" firstAttribute="trailing" secondItem="Vot-OW-mep" secondAttribute="trailing" constant="22" id="p2p-Qi-SAy"/>
+                            <constraint firstItem="F4b-sq-XzW" firstAttribute="leading" secondItem="Idv-tK-lx8" secondAttribute="leading" constant="22" id="p5V-ZG-Dwo"/>
+                            <constraint firstItem="IKu-Zv-unR" firstAttribute="top" secondItem="Idv-tK-lx8" secondAttribute="top" constant="22" id="vT0-Fj-Hir"/>
+                            <constraint firstItem="F4b-sq-XzW" firstAttribute="top" secondItem="LQv-ep-sL5" secondAttribute="bottom" constant="12" id="vzm-rt-s1r"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Idv-tK-lx8"/>
                     </view>
                     <connections>
                         <outlet property="completo" destination="eG8-lb-iFm" id="CWX-9z-q6J"/>
                         <outlet property="dataExpiracao" destination="Vot-OW-mep" id="c6d-Sc-7Kk"/>
-                        <outlet property="descricao" destination="Q91-yp-cYT" id="nKg-O0-7Dv"/>
+                        <outlet property="descricao" destination="LQv-ep-sL5" id="WCo-2P-npf"/>
                         <outlet property="salvar" destination="v1I-0b-DLF" id="1V6-b9-Fcw"/>
                         <outlet property="titulo" destination="IKu-Zv-unR" id="a7g-WV-mEj"/>
                     </connections>
@@ -319,4 +333,7 @@
         <image name="Arrow" width="8" height="13"/>
         <image name="Oval" width="12" height="12"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lzG-rf-FdA"/>
+    </inferredMetricsTieBreakers>
 </document>

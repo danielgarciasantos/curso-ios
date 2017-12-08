@@ -15,6 +15,7 @@ enum Route: Routable {
     case loginRoute(username:String, password:String)
     case getAllTasksRoute
     case salvarTask(task: Result)
+    case editarTask(task: Result)
     
     var rule: Rule {
         switch self {
@@ -30,10 +31,16 @@ enum Route: Routable {
                              "username": username,
                              "password": password]
                 ])
+            
         case let .salvarTask(task):
             return Rule(method: .post, path: "/v1/tasks/",
                         isAuthenticable: false, parameters: [.body: task])
+            
+        case let .editarTask(task):
+            return Rule(method: .put, path: "/v1/tasks/\(task.id ?? "")/",
+                        isAuthenticable: false, parameters: [.body: task])
         }
+
     }
     
 }

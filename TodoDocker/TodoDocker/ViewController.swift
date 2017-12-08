@@ -30,6 +30,9 @@ class ViewController: UIViewController {
         login?.contentMode = .scaleAspectFit
         login?.clipsToBounds = true
         login!.layer.cornerRadius = 11.2
+        
+        self.login.text = "danielgarsantos@gmail.com"
+        self.senha.text = "015730da"
     }
     
     override func didReceiveMemoryWarning() {
