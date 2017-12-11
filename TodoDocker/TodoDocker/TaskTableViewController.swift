@@ -62,19 +62,20 @@ class TaskTableViewController: UITableViewController , UISearchBarDelegate{
     @IBAction func btnSearch(_ sender: UIBarButtonItem) {
         searchBar = UISearchBar()
         searchBar.showsCancelButton = true
-        searchBar.placeholder = "Consultar Task"
+        searchBar.placeholder = "Pesquisar"
         searchBar.delegate = self
         searchBar.tintColor = UIColor.white
+        searchBar.becomeFirstResponder()
         self.navigationItem.titleView = searchBar
         self.botaoSearch.isEnabled = false
         self.botaoSearch.tintColor = UIColor.clear
         self.btnAddTask.isEnabled = false
         self.btnAddTask.tintColor = UIColor.clear
-        searchBar.becomeFirstResponder()
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-       cancelSearch()
+        cancelSearch()
     }
     func cancelSearch() {
         self.navigationItem.titleView = nil
@@ -85,6 +86,32 @@ class TaskTableViewController: UITableViewController , UISearchBarDelegate{
         task.results = taskOriginal
         tableView.reloadData()
     }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            deleteTask(indexPath: indexPath)
+        }
+    }
+    
+    func deleteTask(indexPath: IndexPath) {
+        let result = task.results![indexPath.row]
+        self.showLoanding()
+        AppService().deleteTask(task: result, Success: { reponse in
+            self.task.results?.remove(at: indexPath.row)
+            self.taskOriginal.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }, onError: { error in
+            
+        }, always: {
+            self.hideLoading()
+        })
+    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)

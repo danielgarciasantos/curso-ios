@@ -43,5 +43,12 @@ class AppService: Service<Route> {
                   onError: onError, always: always)
     }
     
+    func deleteTask(task: Result, Success: @escaping (Response<Result>?) -> Void,
+                    onError: @escaping (RestError?) -> Void,
+                    always: @escaping () -> Void) {
+        try! call(.deleteTask(task: task), type: Result.self, onSuccess: Success,
+                  onError: onError, always: always)
+    }
+    
 }
 
