@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         AppService().postLogin(username: login, password: senha, Success: { response in
             if response?.httpStatusCode == 200{
                 loginModel = (response?.body)!
-                self.prepareSegue()
+                self.prepareSegue(loginModel: loginModel)
             }
         }, onError: { error in
             if error?.httpResponseCode == 401{
@@ -92,7 +92,15 @@ class ViewController: UIViewController {
         })
     }
     
-    func prepareSegue() {
+    func prepareSegue(loginModel: Login) {
+        let db = DataBase()
+        let enty = TokenEnty()
+        enty.accessToken = loginModel.access_token
+        enty.expiresIn = loginModel.expires_in!
+        enty.refreshToken = loginModel.refresh_token
+        enty.scope = loginModel.scope
+        db.save(obj: enty)
+        
         self.performSegue(withIdentifier: "loginSucess", sender: self)
     }
 }

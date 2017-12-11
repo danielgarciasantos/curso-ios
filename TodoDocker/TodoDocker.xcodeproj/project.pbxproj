@@ -23,6 +23,8 @@
 		95B89E4B1FD89CA20046F2F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B89E4A1FD89CA20046F2F9 /* Constants.swift */; };
 		95D0881C1FD8A4A70005CA6E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAE4711FD89A74003B7A59 /* Service.swift */; };
 		95FAE46D1FD89915003B7A59 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAE46C1FD89915003B7A59 /* Login.swift */; };
+		95FE66861FDF255D0086ED81 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE66851FDF255D0086ED81 /* DataBase.swift */; };
+		95FE66891FDF25950086ED81 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE66881FDF25950086ED81 /* Entities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		95B89E4A1FD89CA20046F2F9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95FAE46C1FD89915003B7A59 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		95FAE4711FD89A74003B7A59 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		95FE66851FDF255D0086ED81 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataBase.swift; path = ../../../../Downloads/DataBase.swift; sourceTree = "<group>"; };
+		95FE66881FDF25950086ED81 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entities.swift; path = ../../../../Downloads/Entities.swift; sourceTree = "<group>"; };
 		CA8703362799332066BFEF20 /* Pods-TodoDocker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoDocker.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodoDocker/Pods-TodoDocker.release.xcconfig"; sourceTree = "<group>"; };
 		DC9A9041BBDDAA2FC1685CF7 /* Pods_TodoDocker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoDocker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -89,6 +93,8 @@
 		9538FAF41FD88662001113E4 /* TodoDocker */ = {
 			isa = PBXGroup;
 			children = (
+				95FE66871FDF25870086ED81 /* Entity */,
+				95FE66841FDF254E0086ED81 /* DB */,
 				95B89E4A1FD89CA20046F2F9 /* Constants.swift */,
 				95FAE4721FD89AC7003B7A59 /* Route */,
 				95FAE46E1FD89A4C003B7A59 /* Service */,
@@ -131,6 +137,22 @@
 				95B89E461FD89B3F0046F2F9 /* Route.swift */,
 			);
 			path = Route;
+			sourceTree = "<group>";
+		};
+		95FE66841FDF254E0086ED81 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				95FE66851FDF255D0086ED81 /* DataBase.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		95FE66871FDF25870086ED81 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				95FE66881FDF25950086ED81 /* Entities.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		9D426F46B6974A5886021443 /* Pods */ = {
@@ -287,7 +309,9 @@
 			files = (
 				95B89E4B1FD89CA20046F2F9 /* Constants.swift in Sources */,
 				95004D7C1FD9E6C900565175 /* TextField.swift in Sources */,
+				95FE66861FDF255D0086ED81 /* DataBase.swift in Sources */,
 				95D0881C1FD8A4A70005CA6E /* Service.swift in Sources */,
+				95FE66891FDF25950086ED81 /* Entities.swift in Sources */,
 				95004D7A1FD9CE5C00565175 /* TaskTableViewCell.swift in Sources */,
 				95FAE46D1FD89915003B7A59 /* Login.swift in Sources */,
 				95004D7E1FD9F45100565175 /* SalvarViewController.swift in Sources */,
